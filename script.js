@@ -1,6 +1,17 @@
 const myLibrary = [];
 const container = document.querySelector("#container");
 
+const dialog = document.querySelector("dialog");
+const showButton = document.querySelector("dialog + button");
+const closeButton = document.querySelector("dialog button");
+const confirmBtn = document.querySelector(".submit");
+
+const nameInput = document.querySelector(".name");
+const authorInput = document.querySelector(".author");
+const pageInput = document.querySelector(".number");
+
+
+
 
 
 function Book(name, author, page) {
@@ -45,6 +56,23 @@ function displayLibrary(){
 }
 
 
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+  
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+});
+  
+  confirmBtn.addEventListener("click", (event) => {
+    event.preventDefault(); 
+    var bname = nameInput.value;
+    var bauthor = authorInput.value;
+    var bpage = pageInput.value;
+    const new_book = new Book(bname, bauthor, bpage);
+    addBookToLibrary(new_book);
+    dialog.close(); // Have to send the select box value here.
+});
 
 
 const b1 = new Book("1984", "big sis",33)
