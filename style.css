@@ -1,0 +1,23 @@
+body {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.header {
+    background-color: lightyellow;
+    margin-top: 0%;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: repeat(5,20%);
+    gap: 10px;
+}
+
+.book {
+    height: 200px;
+}
+
+form {
+    display: grid;
+}
