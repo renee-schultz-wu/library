@@ -1,5 +1,5 @@
 const myLibrary = [];
-const container = document.querySelector("#container");
+const content = document.querySelector("#content");
 
 const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
@@ -23,17 +23,18 @@ function Book(name, author, page) {
   
   this.createSelf = function() {
     const new_div = document.createElement("div");
-    new_div.innerText = name + " \r\n " +author + "  \r\n " + page; 
+    new_div.innerText = "Book: " + name + " \r\n " + "Author: " + author + "  \r\n " + page + " pages" + "  \r\n "; 
     new_div.style.backgroundColor = "lightpink";
     new_div.classList.add("book");
 
-    container.appendChild(new_div);
+    content.appendChild(new_div);
     this.dom = new_div;
   }
 
   this.addButton = function() {
     const delete_button = document.createElement("button");
     delete_button.textContent = "delete";
+    delete_button.classList.add("del");
     delete_button.addEventListener("click", () => {
         this.dom.remove();
         myLibrary[this.id] = undefined;
@@ -60,7 +61,10 @@ showButton.addEventListener("click", () => {
     dialog.showModal();
 });
   
-  closeButton.addEventListener("click", () => {
+closeButton.addEventListener("click", () => {
+    nameInput.value = "";
+    authorInput.value = "";
+    pageInput.value = "";
     dialog.close();
 });
   
@@ -71,13 +75,17 @@ showButton.addEventListener("click", () => {
     var bpage = pageInput.value;
     const new_book = new Book(bname, bauthor, bpage);
     addBookToLibrary(new_book);
+    nameInput.value = "";
+    authorInput.value = "";
+    pageInput.value = "";
     dialog.close(); // Have to send the select box value here.
+
 });
 
 
-const b1 = new Book("1984", "big sis",33)
+const b1 = new Book("Fahrenheit 451", "Ray Bradbury",249)
 addBookToLibrary(b1)
 
-const b2 = new Book("2001 space odyssey", "i forgot",33)
+const b2 = new Book("Journey to the West", "Wu Cheng'en",2346)
 addBookToLibrary(b2)
 
